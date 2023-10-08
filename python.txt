@@ -1,0 +1,94 @@
+a. Wartość najmniejsza, największa, średnia:
+
+
+with open("dane1.txt", "r") as file:
+    numbers = [int(line.strip()) for line in file]
+
+min_value = min(numbers)
+max_value = max(numbers)
+average = sum(numbers) / len(numbers)
+
+print(f"Najmniejsza wartość: {min_value}")
+print(f"Największa wartość: {max_value}")
+print(f"Średnia wartość: {average}")
+b. Ilość liczb parzystych i nieparzystych:
+
+
+even_count = sum(1 for num in numbers if num % 2 == 0)
+odd_count = len(numbers) - even_count
+
+print(f"Ilość liczb parzystych: {even_count}")
+print(f"Ilość liczb nieparzystych: {odd_count}")
+c. Ilość liczb większych od średniej i mniejszych od średniej:
+
+
+above_average_count = sum(1 for num in numbers if num > average)
+below_average_count = sum(1 for num in numbers if num < average)
+
+print(f"Ilość liczb większych od średniej: {above_average_count}")
+print(f"Ilość liczb mniejszych od średniej: {below_average_count}")
+d. Ilość liczb pierwszych:
+
+
+def is_prime(num):
+    if num <= 1:
+        return False
+    if num <= 3:
+        return True
+    if num % 2 == 0 or num % 3 == 0:
+        return False
+    i = 5
+    while i * i <= num:
+        if num % i == 0 or num % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+
+prime_count = sum(1 for num in numbers if is_prime(num))
+
+print(f"Ilość liczb pierwszych: {prime_count}")
+e. Określanie NWD (największy wspólny dzielnik) dla wszystkich liczb w pliku:
+
+
+import math
+
+def calculate_gcd(x, y):
+    while y != 0:
+        x, y = y, x % y
+    return x
+
+gcd_result = numbers[0]
+for num in numbers[1:]:
+    gcd_result = calculate_gcd(gcd_result, num)
+
+print(f"Największy wspólny dzielnik: {gcd_result}")
+Zaawansowana analiza liczb pobranych z pliku:
+a. Lider zbioru:
+
+
+from collections import Counter
+
+counter = Counter(numbers)
+leader, leader_count = counter.most_common(1)[0]
+
+print(f"Lider zbioru: {leader} (wystąpił {leader_count} razy)")
+b. Ilość liczb palindromowych dziesiętnie:
+
+
+def is_palindrome(n):
+    return str(n) == str(n)[::-1]
+
+palindrome_count = sum(1 for num in numbers if is_palindrome(num))
+
+print(f"Ilość liczb palindromowych dziesiętnie: {palindrome_count}")
+c. Ilość liczb palindromowych dwójkowo:
+
+
+def is_binary_palindrome(n):
+    binary_str = bin(n)[2:]
+    return binary_str == binary_str[::-1]
+
+binary_palindrome_count = sum(1 for num in numbers if is_binary_palindrome(num))
+
+print(f"Ilość liczb palindromowych dwójkowo: {binary_palindrome_count}")
+Powyższe kody przeprowadzą analizę danych w pliku "dane1.txt" zgodnie z wymienionymi podpunktami i wyświetlą odpowiednie wyniki.
