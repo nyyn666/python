@@ -91,4 +91,20 @@ def is_binary_palindrome(n):
 binary_palindrome_count = sum(1 for num in numbers if is_binary_palindrome(num))
 
 print(f"Ilość liczb palindromowych dwójkowo: {binary_palindrome_count}")
-Powyższe kody przeprowadzą analizę danych w pliku "dane1.txt" zgodnie z wymienionymi podpunktami i wyświetlą odpowiednie wyniki.
+
+
+
+
+
+
+
+with open('plik.txt', 'r') as file:
+    pierwsza_linia = file.readline()
+    # Możesz teraz użyć zmiennej pierwsza_linia, która zawiera pierwszą wartość z pliku
+b. Pobieranie wielu wartości z jednego wiersza (np. oddzielonych przecinkiem):
+
+python
+Copy code
+with open('plik.txt', 'r') as file:
+    linia = file.readline()
+    wartosci = linia.split(',')
